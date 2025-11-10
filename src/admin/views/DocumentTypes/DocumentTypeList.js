@@ -9,32 +9,94 @@ import CustomDelete from "admin/components/CustomDelete";
 import CustomEdit from "admin/components/CustomTableAction";
 import { Card, CardBody, CardHeader, Row, Col, Table } from "reactstrap";
 import CustomTableAction from "admin/components/CustomTableAction";
-import { Tooltip } from "antd";
+import { Select, Tooltip } from "antd";
 import getSecurityHierarchyPath from "../Util/getSecurityHierarchyPath";
+import { getDepartments } from "../Departments/api";
+import { cloneDeep } from "lodash";
+import { getDocumentTypesByDepartmentId } from "./api";
 
 class DocumentTypeList extends React.Component {
   constructor() {
     super();
     this.state = {
       showHierarchy: false,
+      departmentList: [],
+      filteredDocumentTypes: null,
+      totalDocumentCount: 0,
     };
   }
+
+  componentDidMount() {
+    getDepartments((err, departments) => {
+      if (err) return;
+      this.setState({
+        departmentList: departments,
+      });
+    });
+  }
+
+  handleDepartmentChange = (departmentId) => {
+    if (!departmentId) {
+      // If no department selected, clear the filter
+      this.setState({
+        filteredDocumentTypes: null,
+        totalDocumentCount: 0,
+      });
+      return;
+    }
+
+    getDocumentTypesByDepartmentId(departmentId, (err, data) => {
+      if (err) {
+        console.error("Error fetching document types:", err);
+        return;
+      }
+
+      if (data.success) {
+        this.setState({
+          filteredDocumentTypes: data.data,
+          totalDocumentCount: data.totalCount,
+        });
+      }
+    });
+  };
+
   render() {
     const p = this.props.permissions || {};
+    // Determine which data to display
+    const displayData =
+      this.state.filteredDocumentTypes !== null ? this.state.filteredDocumentTypes : this.props.documentTypesOnTable;
     return (
       <Card className="shadow">
         <CardHeader>
-          <p className="h5">Document Type List</p>
+          <div className="d-flex justify-content-between align-items-center mb-3">
+            <p className="h5">Document Type List</p>
 
-          {p.documentType === VIEW_EDIT || p.documentType === VIEW_EDIT_DELETE ? (
-            <Link
-              to={metaRoutes.adminDocumentTypesAdd}
-              className="btn-header btn btn-outline-dark btn-sm border-dark border"
+            {p.documentType === VIEW_EDIT || p.documentType === VIEW_EDIT_DELETE ? (
+              <Link
+                to={metaRoutes.adminDocumentTypesAdd}
+                className="btn-header btn btn-outline-dark btn-sm border-dark border"
+                style={{ marginBottom: "5px" }}
+              >
+                <i className="fa fa-plus" />
+                Document Type
+              </Link>
+            ) : null}
+          </div>
+          <div className="d-flex justify-content-center">
+            <Select
+              placeholder="Select Department"
+              style={{ width: "500px", marginBottom: "15px" }}
+              onChange={this.handleDepartmentChange}
+              allowClear
             >
-              <i className="fa fa-plus" />
-              Document Type
-            </Link>
-          ) : null}
+              <Select.Option value={null}>None (All Documents Types)</Select.Option>
+              {this.state.departmentList?.map((department) => (
+                <Select.Option key={department.id} value={department.id}>
+                  {department.name}
+                </Select.Option>
+              ))}
+            </Select>
+          </div>
         </CardHeader>
         <CardBody>
           <Table responsive bordered hover>
@@ -49,7 +111,7 @@ class DocumentTypeList extends React.Component {
               </tr>
             </thead>
             <tbody>
-              {this.props?.documentTypesOnTable?.map((row) => (
+              {displayData?.map((row) => (
                 <tr key={row.id}>
                   <td>{row.id}</td>
                   <td

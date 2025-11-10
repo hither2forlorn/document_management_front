@@ -24,6 +24,17 @@ function getDocumentTypes(callback) {
     });
 }
 
+function getDocumentTypesByDepartmentId(departmentId, callback) {
+  server
+    .get(`${url}-by-department?departmentId=${departmentId}`) // Using query parameter
+    .then((response) => {
+      callback(null, response.data);
+    })
+    .catch((err) => {
+      callback(err);
+    });
+}
+
 function editDocumentType(body, callback) {
   server
     .put(`${url}`, body)
@@ -57,4 +68,11 @@ function deleteDocumentType(id, callback) {
     });
 }
 
-export { addDocumentType, getDocumentTypes, editDocumentType, getDocumentType, deleteDocumentType };
+export {
+  addDocumentType,
+  getDocumentTypes,
+  editDocumentType,
+  getDocumentType,
+  deleteDocumentType,
+  getDocumentTypesByDepartmentId,
+};

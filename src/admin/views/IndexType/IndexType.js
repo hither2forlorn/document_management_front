@@ -10,6 +10,8 @@ import { deleteIndexType, getIndexTypes } from "./api";
 import { getValue } from "config/util";
 import { CustomDelete, CustomEdit } from "admin/components";
 import CustomTableAction from "admin/components/CustomTableAction";
+import { Select } from "antd";
+import { getDocumentIndex } from "../DocumentManagement/api/document";
 
 let indexData = [];
 const IndexType = (props) => {
@@ -18,12 +20,40 @@ const IndexType = (props) => {
   const [index, setIndex] = useState();
   const [documentTypesId, setDocumentTypeId] = useState();
   const [selectedDocType, setSelectedDocType] = useState(null);
+  const [filteredIndexList, setFilteredIndexList] = useState([]);
+
+  // Handle document type selection for filtering
+  const handleDocumentTypeChange = (docTypeId) => {
+    setSelectedDocType(docTypeId);
+
+    if (!docTypeId) {
+      // If no document type selected, show all index types
+      setFilteredIndexList(indexList);
+      return;
+    }
+
+    // Call your existing API to get index types for specific document type
+    getDocumentIndex(docTypeId, (err, data) => {
+      if (err) {
+        console.error("Error fetching document index:", err);
+        setFilteredIndexList([]);
+        return;
+      }
+
+      if (data && data.success) {
+        setFilteredIndexList(data.data);
+      } else {
+        console.error("Failed to fetch document index:", data);
+        setFilteredIndexList([]);
+      }
+    });
+  };
+
   function handleSelectIndexType(value) {
     setSelectedDocType(value);
     indexData = indexList.filter((row) => row.docId == value && row);
   }
   const p = props.permissions || {};
-
   const documentTypes = props.documentTypes ? props.documentTypes : [];
   let data = {};
   const onChange = ({ target }) => {
@@ -71,7 +101,9 @@ const IndexType = (props) => {
       const result = data.data.map((item) => ({
         ...item,
       }));
-      setIndexList(sortArray(result));
+      const sortedList = sortArray(result);
+      setIndexList(sortedList);
+      setFilteredIndexList(sortedList); // Initialize with all data
     });
   };
 
@@ -87,6 +119,7 @@ const IndexType = (props) => {
 
   useEffect(() => {
     updateData();
+    console.log(documentTypes, "documentTypes");
   }, []);
 
   function renderIndexType(data) {
@@ -136,6 +169,23 @@ const IndexType = (props) => {
             >
               <i className="fa fa-plus" /> Add Index
             </Link>
+
+            <div className="d-flex justify-content-center">
+              <Select
+                placeholder="Select Document-Type"
+                style={{ width: "500px", marginBottom: "10px" }}
+                onChange={handleDocumentTypeChange}
+                allowClear
+              >
+                <Select.Option value={null}>None (All Document-Index)</Select.Option>
+
+                {documentTypes?.map((doc) => (
+                  <Select.Option key={doc.id} value={doc.id}>
+                    {doc.name}
+                  </Select.Option>
+                ))}
+              </Select>
+            </div>
           </CardHeader>
           <CardBody>
             <Table responsive bordered hover>
@@ -147,7 +197,7 @@ const IndexType = (props) => {
                   <th>Actions</th>
                 </tr>
               </thead>
-              <tbody>{renderIndexType(selectedDocType ? indexData : indexList)}</tbody>
+              <tbody>{renderIndexType(selectedDocType ? filteredIndexList : indexList)}</tbody>
             </Table>
           </CardBody>
         </Card>

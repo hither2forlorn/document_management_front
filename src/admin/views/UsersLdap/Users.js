@@ -10,11 +10,16 @@ import CustomEdit from "admin/components/CustomTableAction";
 import { Pagination, PaginationItem, PaginationLink } from "reactstrap";
 import CustomTableAction from "admin/components/CustomTableAction";
 import { toast } from "react-toastify";
+import { Select } from "antd";
+import { getDepartments } from "../Departments/api";
+import { getUserByDeptId } from "../Users/api";
 class Users extends Component {
   state = {
     users: [],
     roles: [],
     departments: [],
+    departmentList: [],
+    filteredUserByDept: null,
     status: "active",
     searchQuery: "",
     currentPageNumber: 1,
@@ -23,42 +28,42 @@ class Users extends Component {
 
   // Handle status filter change
   handleStatusFilterChange = (e) => {
-  this.setState({
-    status: e.target.value,
+    this.setState({
+      status: e.target.value,
       currentPageNumber: 1, // Reset to first page
-    startOffset: 0,
-  });
-};
+      startOffset: 0,
+    });
+  };
 
-// Get current status filter value
-getStatusFilterValue = () => {
-  return this.state.status;
-};
+  // Get current status filter value
+  getStatusFilterValue = () => {
+    return this.state.status;
+  };
 
-shouldShowUser = (user) => {
-  const { status } = this.state;
-  
-  switch (status) {
-    case "active":
-      return user.isActive && !user.isDeleted;
-    case "inactive":
-      return !user.isActive && !user.isDeleted;
-    case "deleted":
-      return user.isDeleted;
-    default:
-      return true;
-  }
-};
+  shouldShowUser = (user) => {
+    const { status } = this.state;
 
-renderUserStatus = (user) => {
-  if (user.isDeleted) {
-    return <div className="badge badge-pill badge-danger">Deleted</div>;
-  } else if (user.isActive) {
-    return <div className="badge badge-pill badge-success">Active</div>;
-  } else {
-    return <div className="badge badge-pill badge-warning">Inactive</div>;
-  }
-};
+    switch (status) {
+      case "active":
+        return user.isActive && !user.isDeleted;
+      case "inactive":
+        return !user.isActive && !user.isDeleted;
+      case "deleted":
+        return user.isDeleted;
+      default:
+        return true;
+    }
+  };
+
+  renderUserStatus = (user) => {
+    if (user.isDeleted) {
+      return <div className="badge badge-pill badge-danger">Deleted</div>;
+    } else if (user.isActive) {
+      return <div className="badge badge-pill badge-success">Active</div>;
+    } else {
+      return <div className="badge badge-pill badge-warning">Inactive</div>;
+    }
+  };
 
   handleSelect = (number) => {
     if (number > 0 && number - 1 < this.state.users.length / 10) {
@@ -100,20 +105,56 @@ renderUserStatus = (user) => {
 
   componentDidMount() {
     this.getData();
+    getDepartments((err, departments) => {
+      if (err) return;
+      this.setState({
+        departmentList: departments,
+      });
+    });
   }
 
+  handleDepartmentChange = (departmentId) => {
+    if (!departmentId) {
+      // If no department selected, clear the filter
+      this.setState({
+        filteredUserByDept: null,
+      });
+      return;
+    }
+
+    getUserByDeptId(departmentId, (err, data) => {
+      if (err) {
+        console.error("Error fetching users:", err);
+        return;
+      }
+
+      if (data && data.status === "success") {
+        this.setState({
+          filteredUserByDept: data.result,
+        });
+      } else {
+        console.error("Failed to fetch users:", data);
+        this.setState({
+          filteredUserByDept: [],
+        });
+      }
+    });
+  };
+
   handleSearch = (query) => {
-    this.setState({  searchQuery: query.target.value,
-    currentPageNumber: 1,
-    startOffset: 0 });
+    this.setState({ searchQuery: query.target.value, currentPageNumber: 1, startOffset: 0 });
   };
 
   render() {
     const PER_PAGE_SIZE = 10;
-     const { searchQuery, users } = this.state;
+    const { searchQuery, users, filteredUserByDept } = this.state;
+
+    // Use filteredUserByDept if available, otherwise use all users
+    let dataToShow = filteredUserByDept !== null ? filteredUserByDept : users;
+
     const permissions = this.props.permissions ? this.props.permissions : {};
-    let filtered = users || [];
-    const statusFilteredUsers = filtered.filter(user => this.shouldShowUser(user));
+    let filtered = dataToShow || [];
+    const statusFilteredUsers = filtered.filter((user) => this.shouldShowUser(user));
     let TOTAL_PAGES = Math.ceil(statusFilteredUsers.length / PER_PAGE_SIZE);
     // console.log(TOTAL_PAGES);
     const offset = 3;
@@ -130,7 +171,6 @@ renderUserStatus = (user) => {
       );
     }
 
-    
     // if (searchQuery) {
     //   console.log(searchQuery, users);
     //   filtered = users.filter(
@@ -143,27 +183,23 @@ renderUserStatus = (user) => {
     if (searchQuery) {
       const lowerSearch = searchQuery.toLowerCase();
       filtered = users.filter((user) => {
-        const name = user?.name?.toLowerCase() || '';
-        const phone = user?.phoneNumber?.toLowerCase() || '';
+        const name = user?.name?.toLowerCase() || "";
+        const phone = user?.phoneNumber?.toLowerCase() || "";
         const role = user?.roleId;
-    
-        const [firstName = '', lastName = ''] = name.split(' ');
-    
+
+        const [firstName = "", lastName = ""] = name.split(" ");
+
         const isRoleMatch =
-          (lowerSearch === 'maker' && role === 2) ||
-          (lowerSearch === 'checker' && role === 3) ||
-          (lowerSearch === 'approver' && role === 4);
-    
+          (lowerSearch === "maker" && role === 2) ||
+          (lowerSearch === "checker" && role === 3) ||
+          (lowerSearch === "approver" && role === 4);
+
         const isNameOrPhoneMatch =
-          firstName.startsWith(lowerSearch) ||
-          lastName.startsWith(lowerSearch) ||
-          phone.startsWith(lowerSearch);
-    
+          firstName.startsWith(lowerSearch) || lastName.startsWith(lowerSearch) || phone.startsWith(lowerSearch);
+
         return isRoleMatch || isNameOrPhoneMatch;
       });
     }
-    
-    
 
     const p = this.props.permissions || {};
 
@@ -176,9 +212,28 @@ renderUserStatus = (user) => {
                 <Col>
                   <p className="h5">Ldap Users</p>
                 </Col>
+
+                <Col>
+                  <div className="d-flex justify-content-center">
+                    <Select
+                      placeholder="Select Department"
+                      style={{ width: "500px", marginBottom: "10px" }}
+                      onChange={this.handleDepartmentChange}
+                      allowClear
+                    >
+                      <Select.Option value={null}>None (All Users)</Select.Option>
+                      {this.state.departmentList?.map((department) => (
+                        <Select.Option key={department.id} value={department.id}>
+                          {department.name}
+                        </Select.Option>
+                      ))}
+                    </Select>
+                  </div>
+                </Col>
+
                 <Col>
                   <div className="d-flex justify-content-end align-items-center">
-                    {users ? (
+                    {dataToShow ? (
                       <input
                         className="form-control w-50 mr-1 border rounded"
                         type="text"
@@ -231,36 +286,36 @@ renderUserStatus = (user) => {
                     </tr>
                   </thead>
                   <tbody>
-  {filtered
-    .filter(user => this.shouldShowUser(user)) // Apply status filter first
-    .slice(this.state.startOffset, this.state.startOffset + 10) // Then apply pagination
-    .map((user, index) => (
-      <tr key={user.id}>
-        <td>{user.name}</td>
-        <td>{user.phoneNumber}</td>
-        <td>{this.getObject(user.roleId, this.props.roles)}</td>
-        <td>{this.renderUserStatus(user)}</td>
-        <td>
-          {permissions.isAdmin ||
-          permissions.ldapUser === VIEW_EDIT ||
-          permissions.ldapUser === VIEW_EDIT_DELETE ? (
-            <CustomTableAction
-              to={metaRoutes.adminLdapUsersEdit + "?i=" + A.getHash(user.id)}
-              buttonType="edit"
-              permission={p.ldapUser}
-            />
-          ) : null}
-          {!user.isDeleted && (permissions.ldapUser === VIEW_EDIT_DELETE || permissions.isAdmin) ? (
-            <CustomTableAction
-              buttonType="delete"
-              onClick={() => this.handleDelete(user.id)}
-              permission={p.ldapUser}
-            />
-          ) : null}
-        </td>
-      </tr>
-    ))}
-</tbody>
+                    {filtered
+                      .filter((user) => this.shouldShowUser(user)) // Apply status filter first
+                      .slice(this.state.startOffset, this.state.startOffset + 10) // Then apply pagination
+                      .map((user, index) => (
+                        <tr key={user.id}>
+                          <td>{user.name}</td>
+                          <td>{user.phoneNumber}</td>
+                          <td>{this.getObject(user.roleId, this.props.roles)}</td>
+                          <td>{this.renderUserStatus(user)}</td>
+                          <td>
+                            {permissions.isAdmin ||
+                            permissions.ldapUser === VIEW_EDIT ||
+                            permissions.ldapUser === VIEW_EDIT_DELETE ? (
+                              <CustomTableAction
+                                to={metaRoutes.adminLdapUsersEdit + "?i=" + A.getHash(user.id)}
+                                buttonType="edit"
+                                permission={p.ldapUser}
+                              />
+                            ) : null}
+                            {!user.isDeleted && (permissions.ldapUser === VIEW_EDIT_DELETE || permissions.isAdmin) ? (
+                              <CustomTableAction
+                                buttonType="delete"
+                                onClick={() => this.handleDelete(user.id)}
+                                permission={p.ldapUser}
+                              />
+                            ) : null}
+                          </td>
+                        </tr>
+                      ))}
+                  </tbody>
                 </Table>
               </CardBody>
               <CardFooter>
