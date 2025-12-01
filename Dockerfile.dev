@@ -1,0 +1,23 @@
+FROM node:16.4.2-alpine 
+
+WORKDIR /app
+COPY package*.json .npmrc pnpm-lock.yaml ./
+
+
+# Install PM2 and pnpm
+RUN curl -f https://get.pnpm.io/v6.14.js | node - add --global pnpm
+# RUN npm install -g pm2 pnpm
+
+# Environment Files
+ENV REACT_APP_SERVER_URL = "http://localhost:8181/api"
+ENV REACT_APP_REPORTING_URL = "http://192.168.76.66:6969"
+ENV SKIP_PREFLIGHT_CHECK = true
+
+# RUN npm install -g pnpm
+RUN pnpm i
+COPY . .
+CMD ["npm", "run", "start"]
+
+
+# docker build -f Dockerfile.dev -t dms-client .
+# docker run -it -p 4000:3000 dms-client

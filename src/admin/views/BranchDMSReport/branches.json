@@ -1,0 +1,560 @@
+[
+  {
+    "name": "BANESHWOR BRANCH",
+    "value": "BANESHWOR"
+  },
+  {
+    "name": "SINGHADURBAR COUNTER",
+    "value": "SINGHADURBAR COUNTER"
+  },
+  {
+    "name": "NEWROAD BRANCH",
+    "value": "NEWROAD"
+  },
+  {
+    "name": "SATUNGAL BRANCH",
+    "value": "SATUNGAL"
+  },
+  {
+    "name": "BUTWAL BRANCH",
+    "value": "BUTWAL"
+  },
+  {
+    "name": "BUTWAL EXTENSION COUNTER",
+    "value": "BUTWAL EXTENSION COUNTER"
+  },
+  {
+    "name": "BHAIRAHAWA BRANCH",
+    "value": "BHAIRAHAWA"
+  },
+  {
+    "name": "BIRGUNJ BRANCH",
+    "value": "BIRGUNJ"
+  },
+  {
+    "name": "SIMARA BRANCH",
+    "value": "SIMARA"
+  },
+  {
+    "name": "BIRATNAGAR BRANCH",
+    "value": "BIRATNAGAR"
+  },
+  {
+    "name": "DUHABI BRANCH",
+    "value": "DUHABI"
+  },
+  {
+    "name": "TEKU BRANCH",
+    "value": "TEKU"
+  },
+  {
+    "name": "DHANGADHI BRANCH",
+    "value": "DHANGADHI"
+  },
+  {
+    "name": "ATTARIYA BRANCH",
+    "value": "ATTARIYA"
+  },
+  {
+    "name": "PULCHOWK BRANCH",
+    "value": "PULCHOWK"
+  },
+  {
+    "name": "MANGALBAZAR EXT. COUNTER",
+    "value": "MANGALBAZAR EXT. COUNTER"
+  },
+  {
+    "name": "JANAKPUR BRANCH",
+    "value": "JANAKPUR"
+  },
+  {
+    "name": "LAZIMPAT BRANCH",
+    "value": "LAZIMPAT"
+  },
+  {
+    "name": "ICD BRANCH",
+    "value": "ICD"
+  },
+  {
+    "name": "POKHARA BRANCH",
+    "value": "POKHARA"
+  },
+  {
+    "name": "POKHARA EXTENSION COUNTER",
+    "value": "POKHARA EXTENSION COUNTER"
+  },
+  {
+    "name": "ITAHARI BRANCH",
+    "value": "ITAHARI"
+  },
+  {
+    "name": "BIRATCHOWK BRANCH",
+    "value": "BIRATCHOWK"
+  },
+  {
+    "name": "CHABAHIL BRANCH",
+    "value": "CHABAHIL"
+  },
+  {
+    "name": "NEPALGUNJ BRANCH",
+    "value": "NEPALGUNJ"
+  },
+  {
+    "name": "KOHALPUR BRANCH",
+    "value": "KOHALPUR"
+  },
+  {
+    "name": "BALAJU BRANCH",
+    "value": "BALAJU"
+  },
+  {
+    "name": "BIRTAMOD BRANCH",
+    "value": "BIRTAMOD"
+  },
+  {
+    "name": "DAMAK BRANCH",
+    "value": "DAMAK"
+  },
+  {
+    "name": "FIKKAL BRANCH",
+    "value": "FIKKAL"
+  },
+  {
+    "name": "BAGLUNG BRANCH",
+    "value": "BAGLUNG"
+  },
+  {
+    "name": "GWARKO BRANCH",
+    "value": "GWARKO"
+  },
+  {
+    "name": "LEKHNATH BRANCH",
+    "value": "LEKHNATH"
+  },
+  {
+    "name": "NARAYANGARH BRANCH",
+    "value": "NARAYANGARH"
+  },
+  {
+    "name": "PARSA BRANCH",
+    "value": "PARSA"
+  },
+  {
+    "name": "BHAKTAPUR BRANCH",
+    "value": "BHAKTAPUR"
+  },
+  {
+    "name": "BESHISAHAR BRANCH",
+    "value": "BESHISAHAR"
+  },
+  {
+    "name": "GOLFUTAR BRANCH",
+    "value": "GOLFUTAR"
+  },
+  {
+    "name": "KIRTIPUR BRANCH",
+    "value": "KIRTIPUR"
+  },
+  {
+    "name": "KUSHMA BRANCH",
+    "value": "KUSHMA"
+  },
+  {
+    "name": "SURKHET BRANCH",
+    "value": "SURKHET"
+  },
+  {
+    "name": "LAGANKHEL BRANCH",
+    "value": "LAGANKHEL"
+  },
+  {
+    "name": "TULSIPUR BRANCH",
+    "value": "TULSIPUR"
+  },
+  {
+    "name": "MAITIDEVI BRANCH",
+    "value": "MAITIDEVI"
+  },
+  {
+    "name": "THAMEL BRANCH",
+    "value": "THAMEL"
+  },
+  {
+    "name": "TATOPANI BRANCH",
+    "value": "TATOPANI"
+  },
+  {
+    "name": "KALIMATI BRANCH",
+    "value": "KALIMATI"
+  },
+  {
+    "name": "TAULIHAWA BRANCH",
+    "value": "TAULIHAWA"
+  },
+  {
+    "name": "SANDHIKHARKA BRANCH",
+    "value": "SANDHIKHARKA"
+  },
+  {
+    "name": "KRISHNANAGAR BRANCH",
+    "value": "KRISHNANAGAR"
+  },
+  {
+    "name": "CHANDRAUTA BRANCH",
+    "value": "CHANDRAUTA"
+  },
+  {
+    "name": "LUMBINI BRANCH",
+    "value": "LUMBINI"
+  },
+  {
+    "name": "HETAUDA BRANCH",
+    "value": "HETAUDA"
+  },
+  {
+    "name": "GORKHA BRANCH",
+    "value": "GORKHA"
+  },
+  {
+    "name": "BAGBAZAR BRANCH",
+    "value": "BAGBAZAR"
+  },
+  {
+    "name": "SYANGJA BRANCH",
+    "value": "SYANGJA"
+  },
+  {
+    "name": "CHANDRANIGAHAPUR BRANCH",
+    "value": "CHANDRANIGAHAPUR"
+  },
+  {
+    "name": "GARUDA BRANCH",
+    "value": "GARUDA"
+  },
+  {
+    "name": "RAJBIRAJ BRANCH",
+    "value": "RAJBIRAJ"
+  },
+  {
+    "name": "KANCHANPUR BRANCH",
+    "value": "KANCHANPUR"
+  },
+  {
+    "name": "GONGABU BRANCH",
+    "value": "GONGABU"
+  },
+  {
+    "name": "GULARIYA BRANCH",
+    "value": "GULARIYA"
+  },
+  {
+    "name": "TIKAPUR BRANCH",
+    "value": "TIKAPUR"
+  },
+  {
+    "name": "LAMKI BRANCH",
+    "value": "LAMKI"
+  },
+  {
+    "name": "BHOJPUR BRANCH",
+    "value": "BHOJPUR"
+  },
+  {
+    "name": "DHADING BRANCH",
+    "value": "DHADING"
+  },
+  {
+    "name": "BAGDOL BRANCH",
+    "value": "BAGDOL"
+  },
+  {
+    "name": "BAJHANG BRANCH",
+    "value": "BAJHANG"
+  },
+  {
+    "name": "RUKUM BRANCH",
+    "value": "RUKUM"
+  },
+  {
+    "name": "LAMAHI BRANCH",
+    "value": "LAMAHI"
+  },
+  {
+    "name": "SATDOBATO BRANCH",
+    "value": "SATDOBATO"
+  },
+  {
+    "name": "JORPATI BRANCH",
+    "value": "JORPATI"
+  },
+  {
+    "name": "MAHENDRANAGAR BRANCH",
+    "value": "MAHENDRANAGAR"
+  },
+  {
+    "name": "JHALARI BRANCH",
+    "value": "JHALARI"
+  },
+  {
+    "name": "SUKKHAD BRANCH",
+    "value": "SUKKHAD"
+  },
+  {
+    "name": "KHANDBARI BRANCH",
+    "value": "KHANDBARI"
+  },
+  {
+    "name": "PIPRA BRANCH",
+    "value": "PIPRA"
+  },
+
+  {
+    "name": "BIRUWA BRANCH",
+    "value": "BIRUWA"
+  },
+  {
+    "name": "DUPCHESHWOR BRANCH",
+    "value": "DUPCHESHWOR"
+  },
+  {
+    "name": "BANSGADHI BRANCH",
+    "value": "BANSGADHI"
+  },
+  {
+    "name": "SHIKHAR BRANCH",
+    "value": "SHIKHAR"
+  },
+  {
+    "name": "BANEPA BRANCH",
+    "value": "BANEPA"
+  },
+  {
+    "name": "BAUNIYA BRANCH",
+    "value": "BAUNIYA"
+  },
+  {
+    "name": "BATTAR BRANCH",
+    "value": "BATTAR"
+  },
+  {
+    "name": "KAWASOTI BRANCH",
+    "value": "KAWASOTI"
+  },
+  {
+    "name": "OKHALDHUNGA BRANCH",
+    "value": "OKHALDHUNGA"
+  },
+  {
+    "name": "KALAIYA BRANCH",
+    "value": "KALAIYA"
+  },
+  {
+    "name": "AMARSINGH CHOWK BRANCH",
+    "value": "AMARSINGH CHOWK"
+  },
+  {
+    "name": "MIRCHAIYA BRANCH",
+    "value": "MIRCHAIYA"
+  },
+  {
+    "name": "SITAPAILA BRANCH",
+    "value": "SITAPAILA"
+  },
+  {
+    "name": "TANDI BRANCH",
+    "value": "TANDI"
+  },
+  {
+    "name": "DIPAYAL BRANCH",
+    "value": "DIPAYAL"
+  },
+  {
+    "name": "SURMA BRANCH",
+    "value": "SURMA"
+  },
+  {
+    "name": "TALKOT BRANCH",
+    "value": "TALKOT"
+  },
+  {
+    "name": "DHARAN BRANCH",
+    "value": "DHARAN"
+  },
+  {
+    "name": "DHARAN EXTENSION COUNTER",
+    "value": "DHARAN EXTENSION COUNTER"
+  },
+  {
+    "name": "NAXAL BRANCH",
+    "value": "NAXAL"
+  },
+  {
+    "name": "JADIBUTI BRANCH",
+    "value": "JADIBUTI"
+  },
+  {
+    "name": "MAHAKULUNG BRANCH",
+    "value": "MAHAKULUNG"
+  },
+  {
+    "name": "SILICHONG BRANCH",
+    "value": "SILICHONG"
+  },
+  {
+    "name": "SANOGAUN BRANCH",
+    "value": "SANOGAUN"
+  },
+  {
+    "name": "KANCHANBARI BRANCH",
+    "value": "KANCHANBARI"
+  },
+  {
+    "name": "INARUWA BRANCH",
+    "value": "INARUWA"
+  },
+  {
+    "name": "MAHENDRANAGAR DHANUSHA",
+    "value": "MAHENDRANAGAR DHANUSHA"
+  },
+  {
+    "name": "GHORAHI BRANCH",
+    "value": "GHORAHI"
+  },
+  {
+    "name": "HAKIM CHOWK BRANCH",
+    "value": "HAKIM CHOWK"
+  },
+  {
+    "name": "DHARKE BRANCH",
+    "value": "DHARKE"
+  },
+  {
+    "name": "GAIGHAT BRANCH",
+    "value": "GAIGHAT"
+  },
+  {
+    "name": "DAMAULI BRANCH",
+    "value": "DAMAULI"
+  },
+  {
+    "name": "BHAISEPATI BRANCH",
+    "value": "BHAISEPATI"
+  },
+  {
+    "name": "BUDHANILKANTHA BRANCH",
+    "value": "BUDHANILKANTHA"
+  },
+  {
+    "name": "YOGIKUTI BRANCH",
+    "value": "YOGIKUTI"
+  },
+  {
+    "name": "KHAIRENI BRANCH",
+    "value": "KHAIRENI"
+  },
+  {
+    "name": "MANIGRAM BRANCH",
+    "value": "MANIGRAM"
+  },
+  {
+    "name": "MURGIYA BRANCH",
+    "value": "MURGIYA"
+  },
+  {
+    "name": "JEETPUR BRANCH",
+    "value": "JEETPUR"
+  },
+  {
+    "name": "JAMAL BRANCH",
+    "value": "JAMAL"
+  },
+  {
+    "name": "JARANKHU BRANCH",
+    "value": "JARANKHU"
+  },
+  {
+    "name": "MAHARAJGUNJ BRANCH",
+    "value": "MAHARAJGUNJ"
+  },
+  {
+    "name": "KADAGHARI BRANCH",
+    "value": "KADAGHARI"
+  },
+  {
+    "name": "THIMI BRANCH",
+    "value": "THIMI"
+  },
+  {
+    "name": "PARASI BRANCH",
+    "value": "PARASI"
+  },
+  {
+    "name": "RAJAPUR BRANCH",
+    "value": "RAJAPUR"
+  },
+  {
+    "name": "TAUKHEL BRANCH",
+    "value": "TAUKHEL"
+  },
+  {
+    "name": "SUNDARBASTI BRANCH",
+    "value": "SUNDARBASTI"
+  },
+  {
+    "name": "PATHARI BRANCH",
+    "value": "PATHARI"
+  },
+  {
+    "name": "DHULABARI BRANCH",
+    "value": "DHULABARI"
+  },
+  {
+    "name": "BIRAUTA BRANCH",
+    "value": "BIRAUTA"
+  },
+  {
+    "name": "LALBANDI BRANCH",
+    "value": "LALBANDI"
+  },
+  {
+    "name": "KAMALBINAYAK BRANCH",
+    "value": "KAMALBINAYAK"
+  },
+  {
+    "name": "MANGALBAZAR EXT. COUNTER",
+    "value": "MANGALBAZAR EXT. COUNTER"
+  },
+  {
+    "name": "BARDAGHAT BRANCH",
+    "value": "BARDAGHAT"
+  },
+  {
+    "name": "DALDALE BRANCH",
+    "value": "DALDALE"
+  },
+
+  {
+    "name": "MURALICHOWK BRANCH",
+    "value": "MURALICHOWK"
+  },
+  {
+    "name": "TOKHA BRANCH",
+    "value": "TOKHA"
+  },
+  {
+    "name": "PAKADI EXTENSION COUNTER",
+    "value": "PAKADI EXTENSION COUNTER"
+  },
+  {
+    "name": "SAIPAL BRANCH",
+    "value": "SAIPAL"
+  },
+  {
+    "name": "PHIDIM BRANCH",
+    "value": "PHIDIM"
+  },
+  {
+    "name": "PHUNGLING BRANCH",
+    "value": "PHUNGLING"
+  }
+]
