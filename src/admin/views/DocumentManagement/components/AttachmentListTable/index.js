@@ -28,7 +28,7 @@ import AttachmentMakerChecker from "./AttachmentMakerChecker";
 import { CloseCircleOutlined } from "@ant-design/icons";
 import getSortedItems from "admin/views/Util/filterHierarchyData";
 import { ButtonDropdown, DropdownToggle, DropdownMenu, DropdownItem } from "reactstrap";
-import useUnsavedChangesWarning from "admin/hooks/useUnsavedChangesWarning";
+// import useUnsavedChangesWarning from "admin/hooks/useUnsavedChangesWarning";
 import VersionModel from "utils/versionModel";
 
 const AttachmentListTable = (props) => {
@@ -75,7 +75,7 @@ const AttachmentListTable = (props) => {
   const [isScannerOpen, setIsScannerOpen] = useState(false);
   const isUploadingDocument = state.loading !== null;
   const [src, setSrc] = useState("");
-  const [Prompt, setDirty, setPristine] = useUnsavedChangesWarning("Are you sure want to exit ?");
+  // const [Prompt] = useUnsavedChangesWarning("Are you sure want to exit ?");
   const [opened, setOpened] = useState(false);
   const [watermarkPosition, setWatermarkPosition] = useState(1);
   const [versionData, setVersionData] = useState([])
@@ -137,7 +137,7 @@ const AttachmentListTable = (props) => {
       }
     });
 
-    if (!props.documentData.isApproved) setDirty();
+    if (!props.documentData.isApproved);
 
     setState({
       ...state,
@@ -158,7 +158,7 @@ const AttachmentListTable = (props) => {
       } else {
         toast.error(json.message);
       }
-      setPristine();
+      // setPristine();
     });
   };
 
@@ -809,7 +809,7 @@ const AttachmentListTable = (props) => {
             onClose={handleAttachmentClose}
             data={versionData} // Pass the attachments
           />}
-        {Prompt}
+        {/* {Prompt} */}
         {/* HEADING START */}
         <CardHeader>
           <p className="h5">

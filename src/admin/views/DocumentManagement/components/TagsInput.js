@@ -36,7 +36,7 @@ const TagsInput = (props) => {
   const addTags = (event, onBlur) => {
     const value = event.target.value;
 
-    if (value !== "" && (event.keyCode === 9 || onBlur)) {
+    if (value !== "" && (event.keyCode === 9 || event.keyCode === 13|| onBlur)) {
       const currenetTags = [...tags, value];
       setTags(currenetTags);
 
